@@ -2,6 +2,8 @@ let clickCount = 0;
 let birthYear = 0;
 let purchAmount = 0;
 let taxMultiplier = 0;
+let foodRecommendation = "";
+let description;
 
 $(document).ready(function () {
     // add the functions as event listeners
@@ -42,7 +44,8 @@ function checkAge(event) {
 
     // If they are currently under 18, print "Child"
     // to the <p> with ID of "birthYearOutput"
-        if(Date().getFullYear() - birthYear < 18){
+        let d = new Date();
+        if(d.getFullYear() - birthYear < 18){
             $("#birthYearOutput").text("Child");
         }
     // If they are 18 or over, print "Adult" instead
@@ -63,7 +66,7 @@ function calcSalesTax(event) {
 
     // Calculate the sales tax amount and print to
     // the <p> with ID of "salesTaxOutput"
-        switch($("#state").val()){
+        switch($("#state").val().toUpperCase()){
             case "WI":
                 taxMultiplier = .05;
                 break;
@@ -106,7 +109,6 @@ function recommendFood(event) {
 
     // Cats under 2 get "kitten chow", between 2 and 10
     // get "adult chow", and over 10 get "senior chow"
-        let foodRecommendation = "";
         if (catAge < 0) {
             foodRecommendation = "error"
         }
@@ -138,7 +140,7 @@ function drawCard(event) {
     // Declare a variable to hold the description
     // of the card, for example "King of Spades"
     // or "2 of Hearts"
-    let description;
+
 
     // For face values 2 - 10, you can just print the number.
     // Face value 1 is "Ace", 11 is "Jack", 12 is "Queen",
@@ -164,19 +166,19 @@ function drawCard(event) {
     // For the suits, 1 is "Clubs", 2 is "Spades",
     // 3 is "Hearts", 4 is "Diamonds"
         switch (suit){
-            case "1":
+            case 1:
                 description +="Clubs";
                 break;
 
-            case "2":
+            case 2:
                 description +="Spades";
                 break;
 
-            case "3":
+            case 3:
                 description +="Hearts";
                 break;
 
-            case "4":
+            case 4:
                 description +="Diamonds";
                 break;
         }
